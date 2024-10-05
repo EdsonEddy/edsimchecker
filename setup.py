@@ -17,8 +17,6 @@ setup(
         "Operating System :: OS Independent",
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
-        "Topic :: Software Development :: Code Generators",
-        "Topic :: Software Development :: Quality Assurance",
     ],
     keywords="code analysis, similarity detection, plagiarism detection, code snippets, code comparison",
     project_urls={
@@ -27,4 +25,9 @@ setup(
         "Source Code": "https://github.com/EdsonEddy/edsimchecker",
     },
     python_requires='>=3.9',
+    entry_points={
+        'console_scripts': [
+            'edsimchecker=edsimchecker.__main__:main',
+        ],
+    },
 )

@@ -44,3 +44,6 @@ Thumbs.db
 *.ntvs*
 *.njsproj
 *.sln
+
+# Python cache
+__pycache__/
