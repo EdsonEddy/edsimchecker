@@ -3,7 +3,7 @@ from setuptools import setup, find_packages
 setup(
     name="edsimchecker",
     version="0.1.0",
-    packages=find_packages(),
+    packages=find_packages(where='src'),
     install_requires=[],
     author="Eddy Lecoña",
     author_email="crew0eddy@gmail.com",
@@ -27,7 +27,7 @@ setup(
     python_requires='>=3.9',
     entry_points={
         'console_scripts': [
-            'edsimchecker=edsimchecker.__main__:main',
+            'edsimchecker=src.__main__:main',
         ],
     },
 )

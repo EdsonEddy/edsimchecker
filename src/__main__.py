@@ -1,9 +1,9 @@
-import os
 import argparse
-from utils import process_files
+from pathlib import Path
+from file_handler import process_files
 
 def get_file(file_path):
-    if not os.path.isfile(file_path):
+    if not Path(file_path).is_file():
         raise argparse.ArgumentTypeError(f"File '{file_path}' does not exist.")
     return file_path
 
@@ -24,10 +24,10 @@ def main():
     group = parser.add_mutually_exclusive_group(required=True)
     
     # Add the 'path' argument to the group
-    group.add_argument('--path', type=str, help='Path to the directory containing the source code files')
+    group.add_argument('--path', '-p', type=str, help='Path to the directory containing the source code files')
     
     # Add the 'files' argument to the group
-    group.add_argument('--files', type=get_file, nargs=2, help='The input files')
+    group.add_argument('--files', '-f', type=get_file, nargs=2, help='The input files')
     
     # Add the 'recursive' argument
     parser.add_argument('--recursive', '-r', action='store_true', help='Recursively search through directories')
