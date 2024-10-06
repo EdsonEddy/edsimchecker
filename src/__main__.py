@@ -16,6 +16,15 @@ def get_threshold(value):
         raise argparse.ArgumentTypeError(f"Threshold must be between 0.0 and 1.0")
     return fvalue
 
+def get_level(value):
+    try:
+        ivalue = int(value)
+    except ValueError:
+        raise argparse.ArgumentTypeError(f"Invalid level value: {value}")
+    if ivalue < 0 or ivalue > 4:
+        raise argparse.ArgumentTypeError(f"Level must be between 0 and 4")
+    return ivalue
+
 def main():
     # Create the argument parser
     parser = argparse.ArgumentParser(description='EdSimChecker: Detect similarity between source codes.')
@@ -34,10 +43,14 @@ def main():
 
     # Add the 'threshold' argument with range validation (0.0 - 1.0)
     parser.add_argument('--threshold', '-t', type=get_threshold, default=0.7, help='The similarity threshold (default: 0.7, range: 0.0 - 1.0)')
+
+    # Add the 'level' argument with range validation (0 - 4)
+    parser.add_argument('--level', '-l', type=get_level, default=0, help='The obfuscation level (default: 0, range: 0 - 4)')
     
     # Parse the arguments
     args = parser.parse_args()
     
+    # Process the files
     file_names, file_contents = process_files(args)
 
 if __name__ == "__main__":
