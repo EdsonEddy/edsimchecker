@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 from file_handler import process_files
+from similarity_checker import similarity_grouper
 
 def get_file(file_path):
     if not Path(file_path).is_file():
@@ -25,6 +26,12 @@ def get_level(value):
         raise argparse.ArgumentTypeError(f"Level must be between 0 and 4")
     return ivalue
 
+def get_window_percentage(value):
+    fvalue = float(value)
+    if fvalue < 0.0 or fvalue > 1.0:
+        raise argparse.ArgumentTypeError(f"Window percentage must be between 0.0 and 1.0")
+    return fvalue
+
 def main():
     # Create the argument parser
     parser = argparse.ArgumentParser(description='EdSimChecker: Detect similarity between source codes.')
@@ -47,11 +54,26 @@ def main():
     # Add the 'level' argument with range validation (0 - 4)
     parser.add_argument('--level', '-l', type=get_level, default=0, help='The obfuscation level (default: 0, range: 0 - 4)')
     
+    # Add the 'window-percentage' argument with range validation (0.0 - 1.0)
+    parser.add_argument('--window-percentage', '-w', type=get_window_percentage, default=1.0, help='The window percentage (default: 1.0, range: 0.0 - 1.0)')
+
     # Parse the arguments
     args = parser.parse_args()
     
     # Process the files
     file_names, file_contents = process_files(args)
+
+    if len(file_names) > 1:
+        # Group the files based on similarity
+        groups = similarity_grouper(file_names, file_contents, args.threshold, args.window_percentage)
+
+        # Display the grouped files
+        for group_index, file_group in enumerate(groups):
+            print(f"Group {group_index + 1}:")
+            for file in file_group:
+                print(file)
+    else:
+        print("No files to compare.")
 
 if __name__ == "__main__":
     main()

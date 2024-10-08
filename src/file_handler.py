@@ -1,4 +1,5 @@
 import os
+from clean_handler import code_cleaner
 
 def read_file(file_path):
     try:
@@ -29,8 +30,10 @@ def process_files(args):
                 for file in files:
                     if file.endswith('.py'):
                         file_path = os.path.join(root, file)
-                        print(f"Processing file: {file_path}")
+                        # print(f"Processing file: {file_path}")
                         file_name, content = read_file(file_path)
+                        # Clean the code based on the obfuscation level                        
+                        content = code_cleaner(content, args.level)
                         # Store the file name and content
                         file_names.append(file_name)
                         file_contents.append(content)
@@ -38,16 +41,21 @@ def process_files(args):
             for file in os.listdir(path):
                 file_path = os.path.join(path, file)
                 if os.path.isfile(file_path) and file.endswith('.py'):
-                    print(f"Processing file: {file_path}")
+                    # print(f"Processing file: {file_path}")
                     file_name, content = read_file(file_path)
+                    # Clean the code based on the obfuscation level                        
+                    content = code_cleaner(content, args.level)
                     # Store the file name and content
                     file_names.append(file_name)
                     file_contents.append(content)
     elif args.files:
         file1, file2 = args.files
-        print(f"Processing files: {file1} and {file2}")
+        # print(f"Processing files: {file1} and {file2}")
         file_name1, content1 = read_file(file1)
         file_name2, content2 = read_file(file2)
+        # Clean the code based on the obfuscation level                        
+        content1 = code_cleaner(content1, args.level)
+        content2 = code_cleaner(content2, args.level)
         # Store the file name and content
         file_names.extend([file_name1, file_name2])
         file_contents.extend([content1, content2])

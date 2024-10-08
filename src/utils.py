@@ -74,7 +74,7 @@ def edit_distance_optimized(sequence_a, sequence_b, window_percentage):
     len_b = len(sequence_b) + 1
 
     # Calculate the window size based on the window percentage
-    window_size = ceil(len(sequence_b) * (window_percentage / 100))
+    window_size = ceil(len(sequence_b) * window_percentage)
 
     # Create a dynamic programming table with dimensions 2 x len_b
     dp = [[0] * len_b for _ in range(2)]
@@ -92,7 +92,7 @@ def edit_distance_optimized(sequence_a, sequence_b, window_percentage):
             # Calculate the cost of different operations: insert, delete, and replace
             insert = dp[1][j - 1] + 1
             delete = dp[0][j] + 1
-            replace = dp[0][j - 1] + (sequence_a[j - 1] != sequence_b[i - 1])
+            replace = dp[0][j - 1] + (sequence_a[i - 1] != sequence_b[j - 1])
             
             # Choose the minimum cost among the three operations
             dp[1][j] = min(insert, delete, replace)
