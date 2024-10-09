@@ -1,4 +1,6 @@
-### Documentation of Obfuscation Levels
+# Obfuscation Levels
+
+EdSimChecker provides multiple levels of code obfuscation to help analyze and detect similarities in source code. Each level applies different transformations to the code.
 
 #### Level 0: No Transformations
 At this level, no transformations are applied to the source code. The code remains as it was provided.
@@ -36,7 +38,6 @@ At this level, in addition to the transformations of the previous levels, functi
   - `FunctionInliner`
     - **Description**: Replaces function calls with the corresponding function body.
 
-
 ### Example Usage
 ```python
 code_string = """
@@ -66,3 +67,7 @@ print(code_cleaner(code_string, level=3))
 
 # Level 4: Function inlining
 print(code_cleaner(code_string, level=4))
+```
+
+## Purpose
+*The purpose of applying the code cleaner at various levels of obfuscation is to simplify the source code, making it easier to compare with other code. By progressively removing docstrings, unused variables, and unused functions, and by inlining function calls, the code cleaner reduces the code size and eliminates unnecessary elements. This process helps in analyzing and detecting similarities in source code more effectively.*

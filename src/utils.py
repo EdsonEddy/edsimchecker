@@ -51,7 +51,7 @@ class UnionFind:
     
 from math import ceil
 
-def edit_distance_optimized(sequence_a, sequence_b, window_percentage):
+def optimized_edit_distance(sequence_a, sequence_b, window_percentage):
     """
     Calculate the edit distance between two sequences using a window of a specified percentage.
     Args:
