@@ -2,6 +2,7 @@ import tokenize
 import io
 from utils import UnionFind
 from utils import optimized_edit_distance
+from utils import get_similarity_coefficient
 
 def get_tokenized_code(code_string):
     """
@@ -35,9 +36,15 @@ def similarity_grouper(file_names, file_contents, threshold, window_percentage):
     tokenized_files = [get_tokenized_code(file) for file in file_contents]
 
     for i in range(file_number - 1):
+        seq_a = tokenized_files[i]
+        len_a = len(tokenized_files[i])
         for j in range(i + 1, file_number):
             if not uf.is_same_set(i, j):
-                if optimized_edit_distance(tokenized_files[i], tokenized_files[j], window_percentage) < threshold:
+                seq_b = tokenized_files[j]
+                len_b = len(tokenized_files[j])
+                edit_distance = optimized_edit_distance(seq_a, seq_b, window_percentage)
+                similarity_percentage = get_similarity_coefficient(edit_distance, len_a, len_b)
+                if similarity_percentage > threshold:
                     uf.union(i, j)
 
     groups = {}

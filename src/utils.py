@@ -99,3 +99,17 @@ def optimized_edit_distance(sequence_a, sequence_b, window_percentage):
 
     # Return the minimum cost to transform sequence_a into sequence_b    
     return dp[1][len_b - 1]
+
+def get_similarity_coefficient(edit_distance, len_seq_a, len_seq_b):
+    """
+    Calculate the similarity percentage between two sequences based on their edit distance.
+    Args:
+        edit_distance (int): The edit distance between the two sequences.
+        len_seq_a (int): The length of the first sequence.
+        len_seq_b (int): The length of the second sequence.
+    Returns:
+        float: The similarity percentage between the two sequences.
+    """
+
+    max_length = max(len_seq_a, len_seq_b)
+    return (1 - edit_distance / max_length)

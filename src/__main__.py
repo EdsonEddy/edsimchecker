@@ -49,7 +49,7 @@ def main():
     parser.add_argument('--recursive', '-r', action='store_true', help='Recursively search through directories')
 
     # Add the 'threshold' argument with range validation (0.0 - 1.0)
-    parser.add_argument('--threshold', '-t', type=get_threshold, default=0.7, help='The similarity threshold (default: 0.7, range: 0.0 - 1.0)')
+    parser.add_argument('--threshold', '-t', type=get_threshold, default=0.75, help='The similarity threshold (default: 0.75, range: 0.0 - 1.0)')
 
     # Add the 'level' argument with range validation (0 - 4)
     parser.add_argument('--level', '-l', type=get_level, default=0, help='The obfuscation level (default: 0, range: 0 - 4)')
