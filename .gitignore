@@ -47,3 +47,6 @@ Thumbs.db
 
 # Python cache
 __pycache__/
+
+# Python egg and build files
+*.egg-info

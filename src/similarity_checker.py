@@ -1,8 +1,8 @@
 import tokenize
 import io
-from utils import UnionFind
-from utils import optimized_edit_distance
-from utils import get_similarity_coefficient
+from .utils import UnionFind
+from .utils import optimized_edit_distance
+from .utils import get_similarity_coefficient
 
 def get_tokenized_code(code_string):
     """

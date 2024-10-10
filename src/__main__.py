@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
-from file_handler import process_files
-from similarity_checker import similarity_grouper
+from .file_handler import process_files
+from .similarity_checker import similarity_grouper
 
 def get_file(file_path):
     if not Path(file_path).is_file():

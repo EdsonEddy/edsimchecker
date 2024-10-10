@@ -1,5 +1,5 @@
 import os
-from clean_handler import code_cleaner
+from .clean_handler import code_cleaner
 
 def read_file(file_path):
     try:

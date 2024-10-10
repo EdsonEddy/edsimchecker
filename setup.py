@@ -7,7 +7,7 @@ setup(
     install_requires=[],
     author="Eddy Lecoña",
     author_email="crew0eddy@gmail.com",
-    description=" A tool for analyzing code snippets and detecting similarities",
+    description="A tool for analyzing code snippets and detecting similarities",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     url="https://github.com/EdsonEddy/edsimchecker",

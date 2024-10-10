@@ -29,7 +29,7 @@ No additional dependencies are required. You only need to have Python installed 
     ```
 3. Install the package:
     ```sh
-    python setup.py install
+    pip install .
     ```
 
 ## Arguments
@@ -37,7 +37,7 @@ No additional dependencies are required. You only need to have Python installed 
 - `--path`, `-p`: Path to the directory containing the source code files.
 - `--files`, `-f`: Specific input files to compare.
 - `--recursive`, `-r`: Recursively search through directories.
-- `--threshold`, `-t`: Similarity threshold (default: 0.7, range: 0.0 - 1.0).
+- `--threshold`, `-t`: Similarity threshold (default: 0.75, range: 0.0 - 1.0).
 - `--level`, `-l`: Obfuscation level (default: 0, range: 0 - 4).
 - `--window-percentage`, `-w`: Window percentage (default: 1.0, range: 0.0 - 1.0).
 
